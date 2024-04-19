@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Student's Table Website</title>
+
+    <style>
+        body{
+    background-color: lavender;
+    font-family: 'Arial', sans-serif;
+
+}
+
+h1{
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+table{
+   width: 100%;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow color and size as needed */
+    overflow-x: auto;
+}
+
+
+
+.table-container {
+    display: flex;
+    justify-content: center;
+}
+
+th,td{
+    border: 1px solid #000000;
+    padding: 6px;
+    text-align:left;
+    vertical-align: middle;
+}
+
+th{
+    background-color: #e5feff;
+    font-weight: bold;
+    color: #333;
+}
+ 
+td{
+    font-size: 20px;
+    color: #333232;
+}
+
+
+
+tr:nth-child(even){
+    background-color: #f9f9f9;
+}
+
+tr {
+    transition: background-color 0.3s ease;
+}
+
+
+ caption {
+    font-family: 'Verdana', sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px; /* Increased margin for separation */
+        }
+
+        @media only screen and (max-width: 600px) {
+            /* Responsive table styles */
+            table {
+                font-size: 16px;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+
+        tr.selected {
+    background-color: #ffcccc; /* Light red color for selected row */
+}
+
+/* Modal styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+}
+
+.close {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+tr:hover {
+    background-color: #efe5e5;
+   
+    cursor: pointer;
+}
+
+.close:hover {
+    color: red;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-close-btn {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+
+.modal-close-btn:hover {
+    color: red;
+}
+
+.search-container {
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #searchInput {
+        padding: 8px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        margin-right: 10px;
+        width: 250px;
+        box-sizing: border-box;
+    }
+
+    #searchInput:focus {
+        outline: none;
+        border-color: dodgerblue;
+        box-shadow: 0 0 5px rgba(0, 0, 255, 0.5);
+    }
+
+    #searchBtn {
+        padding: 8px 12px;
+        border-radius: 5px;
+        background-color: dodgerblue;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    #searchBtn:hover {
+        background-color: #007bff;
+    }
+
+    .sticky-header {
+    position: sticky;
+    top: 0;
+    background-color: #f3eeee; /* Match the background color of your th elements */
+    z-index: 100; /* Ensure the header is above other content */
+}
+
+    </style>
+</head>
+
+<body>
+
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Search by Name or Roll No...">
+        <button id="searchBtn">Search</button>
+    </div>
+    
+
+    <h1>Student Table Of Science Stream</h1>
+      <div class="table-container ">
+        <table >
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>class</th>
+                <th>Roll No.</th>
+            </tr>
+    
+            <tr>
+                <td>1.</td>
+                <td>Afroz Mansoor</td>
+                <td>11th</td>
+                <td>3101</td>
+            </tr>
+            <tr>
+                <td>2.</td>
+                <td>Ajay Bherwa</td>
+                <td>11th</td>
+                <td>3102</td>
+            </tr>
+            <tr>
+                <td>3.</td>
+                <td>Diya Tarwani</td>
+                <td>11th</td>
+                <td>3103</td>
+            </tr>
+            <tr>
+                <td>4.</td>
+                <td>Gorvi Meena</td>
+                <td>11th</td>
+                <td>3104</td>
+            </tr>
+            <tr>
+                <td>5.</td>
+                <td>HimanshuDas</td>
+                <td>11th</td>
+                <td>3105</td>
+            </tr>
+            <tr>
+                <td>6.</td>
+                <td>Himanshu Kuldeep</td>
+                <td>11th</td>
+                <td>3106</td>
+            </tr>
+            <tr>
+                <td>7.</td>
+                <td>Kajal Shah</td>
+                <td>11th</td>
+                <td>3107</td>
+            </tr>
+            <tr>
+                <td>8.</td>
+                <td>Manjeet</td>
+                <td>11th</td>
+                <td>3108</td>
+            </tr>
+            <tr>
+                <td>9.</td>
+                <td>Mansi Verma</td>
+                <td>11th</td>
+                <td>3109</td>
+            </tr>
+            <tr>
+                <td>10.</td>
+                <td>Nikhil</td>
+                <td>11th</td>
+                <td>3110</td>
+            </tr>
+            <tr>
+                <td>11.</td>
+                <td>Praveen Goswami</td>
+                <td>11th</td>
+                <td>3111</td>
+            </tr>
+            <tr>
+                <td>12.</td>
+                <td>Suraj Gujjar</td>
+                <td>11th</td>
+                <td>3112</td>
+            </tr>
+            <tr>
+                <td>13.</td>
+                <td>Narendra</td>
+                <td>11th</td>
+                <td>3113</td>
+            </tr>
+     
+
+    
+        </table>
+      </div>
+
+<!-- Modal structure -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Student Details</h2>
+        <div id="modalContent"></div>
+    </div>
+</div>
+
+    
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const rows = document.querySelectorAll("tr:not(:first-child)");
+        const modal = document.getElementById("myModal");
+        const modalContent = document.getElementById("modalContent");
+        const closeBtn = document.querySelector(".close");
+        const searchInput = document.getElementById("searchInput");
+        const searchBtn = document.getElementById("searchBtn");
+
+        rows.forEach(row => {
+            row.addEventListener("click", function () {
+                rows.forEach(r => r.classList.remove("selected"));
+                this.classList.add("selected");
+
+                // Get data from the clicked row
+                const cells = Array.from(this.cells);
+                const studentName = cells[1].textContent;
+                const studentClass = cells[2].textContent;
+                const rollNo = cells[3].textContent;
+
+                // Display details in the modal after a delay
+                setTimeout(function () {
+                    modalContent.innerHTML = `
+                        <p><strong>Name:</strong> ${studentName}</p>
+                        <p><strong>Class:</strong> ${studentClass}</p>
+                        <p><strong>Roll No.:</strong> ${rollNo}</p>
+                    `;
+
+                    // Show the modal
+                    modal.style.display = "block";
+                }, 200); // Adjust the delay time (in milliseconds) as needed
+            });
+        });
+
+        // Close the modal when close button or outside the modal is clicked
+        closeBtn.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+
+        // Search functionality
+        searchBtn.addEventListener("click", searchTable);
+
+        searchInput.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                searchTable();
+            }
+        });
+
+        function searchTable() {
+            const searchText = searchInput.value.toLowerCase().trim();
+            rows.forEach(row => {
+                const name = row.cells[1].textContent.toLowerCase();
+                const rollNo = row.cells[3].textContent.toLowerCase();
+                if (name.includes(searchText) || rollNo.includes(searchText)) {
+                    row.style.display = "";
+                } else {
+                    row.style.display = "none";
+                }
+            });
+        }
+
+        window.addEventListener("click", function (event) {
+            if (!event.target.closest("table") && event.target !== modal && !modal.contains(event.target)) {
+                rows.forEach(r => r.classList.remove("selected"));
+            }
+        });
+    });
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const table = document.querySelector("table");
+        const header = table.querySelector("thead");
+        header.classList.add("sticky-header");
+    });
+
+</script>
+
+
+
+    
+    
+    
+</body>
+
+</html>
